@@ -1,0 +1,120 @@
+.gif-container {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  @include big {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @include big2 {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  @include middle {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  @include small {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  &__gif-card {
+    box-sizing: border-box;
+    display: grid;
+    position: relative;
+    transition: 0.2s ease;
+
+    &:hover {
+      transform: scale(1.2);
+      z-index: 3;
+    }
+
+    &--placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: var(--img-height);
+      position: absolute;
+      z-index: 0;
+      overflow: hidden;
+      background-color: whitesmoke;
+      border-radius: var(--img-radius);
+      color: var(--loading-color);
+    }
+
+    &--hover {
+      display: grid;
+      align-items: flex-end;
+      justify-content: flex-end;
+      height: var(--img-height);
+      position: relative;
+      z-index: 3;
+      overflow: hidden;
+
+      .hover-card {
+        box-sizing: border-box;
+        z-index: 99;
+        padding: 1rem;
+        text-overflow: ellipsis;
+        position: absolute;
+        display: none;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0),
+          rgba(0, 0, 0, 1)
+        );
+        color: white;
+        border-radius: var(--img-radius);
+
+        p {
+          font-size: 15px;
+        }
+
+        .profile {
+          margin-top: 15px;
+          margin-bottom: 5px;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 25px;
+            height: 25px;
+            border-radius: 50px;
+            margin-right: 20px;
+          }
+          p {
+            margin-left: 40px;
+            bottom: 0;
+            font-size: 12px;
+          }
+        }
+      }
+
+      &:hover {
+        .hover-card {
+          display: block;
+        }
+      }
+    }
+    img {
+      position: absolute;
+      border-radius: var(--img-radius);
+      width: var(--img-width);
+      height: var(--img-height);
+      object-fit: cover;
+      z-index: 1;
+    }
+  }
+
+  &__button {
+    margin-top: 20px;
+    display: grid;
+    background-color: var(--dark-blue);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    height: 40px;
+    @include radius(10px);
+  }
+}
